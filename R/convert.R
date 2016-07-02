@@ -9,20 +9,21 @@ accepted_currencies <- exchange_master[,1]
 
 # This helper function is doing all the necessary error checking to
 # ensure that the data frame can be correctly processed.
-error_checking <- function(csv, out_curr) {
-  if (class(csv) != "data.frame") {
-    stop("Input a csv file!")
+error_checking <- function(spending_frame, out_curr) {
+  if (class(spending_frame) != "data.frame") {
+    stop("Input a data frame that was passed through input()!")
   }
-  if (!all(colnames(Template) == colnames(csv))) {
+  if (!all(colnames(Template) == colnames(spending_frame))) {
     stop("Use the template provided!")
   }
-  if (class(out_curr) != "character") {
-    stop("Second argument must be a string.")
-  }
+ # if (class(out_curr) != "character") {
+
+  #  stop("Second argument must be a string.")
+  #}
   if (!is.element(toupper(out_curr), accepted_currencies)) {
     stop("Second argument is not a currency!")
   }
-  for (currency in csv$Currency) {
+  for (currency in spending_frame$Currency) {
     if (!is.element(toupper(currency), exchange_master$Code)) {
       cat(sprintf("%s is not in our database. Check the spelling.\n", currency))
     }
@@ -31,24 +32,25 @@ error_checking <- function(csv, out_curr) {
 
 #' This function will convert between currencies.
 #' @author Carlos Couce
-#' @param csv - file with spending expenses
-#' @param out_curr - all the currencies in the csv will
+#' @param spending_frame - data frame passed through input() by user before convert() is called
+#' @param out_curr - all the currencies in the data frame will
 #'                          be converted to this output currency
-#' @return csv - generate a column at the far right of the csv
+#' @return spending_frame - generate a column at the far right of the data frame
 #'               with the desired output_currency and a running total
 #' @example convert("my-summer-expenses", "USD")
 #' @export
-convert <- function(csv, out_curr) {
-  error_checking(csv, out_curr)
+convert <- function(spending_frame, out_curr) {
+  error_checking(spending_frame, out_curr)
   counter <- 0
-  csv[,"Output"] <- NA
-  for (curr in csv$Currency) {
+  spending_frame[,"Output"] <- NA
+  for (curr in spending_frame$Currency) {
     counter <- counter + 1
     to.US <- exchange_master[match(toupper(curr), exchange_master$Code), 2]
-    middle <- to.US * csv[counter, 2]
+    middle <- to.US * spending_frame[counter, 2]
     to.desired <- exchange_master[match(toupper(out_curr), exchange_master$Code), 3]
     final <- middle * to.desired
-    csv[counter, 5] <- final
+    spending_frame[counter, 5] <- final
   }
-  write.table(csv, "New_Ouput")
+  write.table(spending_frame, "New_Ouput")
+  return(spending_frame)
 }

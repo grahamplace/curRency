@@ -8,7 +8,6 @@
 spending_line_total <- function(spending_frame, outputCurr = "USD") {
   library(ggplot2)
   library(dplyr)
-  spending_frame <- input(spending_frame)
   spending_frame <- convert(spending_frame, outputCurr)
   agg <- group_by(spending_frame, Date)
   withTotals <- summarise(agg, Total_Spending = sum(Output))
