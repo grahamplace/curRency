@@ -2,11 +2,11 @@
 #'
 #' @param csv A csv file with expenses information (including currency).
 #' @return A data frame with cleaned up and properly identified information.
-#' examples
-#' to.dataframe("spending_spreadsheet")
+#' @example
+#' input("spending_spreadsheet.csv")
 #' @export
 
-to.dataframe <- function(csv) {
+input <- function(csv) {
   if (class(csv) != "character") {
     stop("csv file must be input as a string!")
   }
@@ -15,6 +15,7 @@ to.dataframe <- function(csv) {
   }
   library(readr)
   user_spending <- read_csv(csv)
-  user_spending[,3] <- factor(user_spending[,3])
+  spending_chart <- data.frame("Currency" = user_spending[,1], "Value" = user_spending[,2], "Category" = user_spending[,3], "Date" = user_spending[,4])
+  spending_chart$Category <- factor(spending_chart$Category)
+  return(spending_chart)
 }
-to.dataframe("spending_spreadsheet")
