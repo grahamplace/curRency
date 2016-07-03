@@ -9,11 +9,30 @@ spending_bar <- function(spending_frame, outputCurr = "USD") {
   library(ggplot2)
   library(dplyr)
   spending_frame <- convert(spending_frame, outputCurr)
-  agg <- group_by(spending_frame, Category)
-  withTotals <- summarise(agg, Total_Spending = sum(Output))
-  withTotals$Rank <- rank(withTotals$Total_Spending)
-  ggplot(withTotals, mapping = aes(x = Category, y = Total_Spending, fill = Rank^2)) +
+
+  ###
+  #Best solution after lots of trial and error:
+  withTotals<- aggregate(Output ~ Category, spending_frame, sum)
+  withTotals$Rank <- rank(withTotals$Output)
+
+  #Plot:
+  ggplot(withTotals, mapping = aes(x = Category, y = Output, fill = Rank^2)) +
     geom_bar(stat = "identity") +
     labs(x = "Category", y = "Total Spending", title = "Total Spending By Category") +
     guides(fill = FALSE)
+
+
+  #notes/trials:
+  #agg <- group_by(spending_frame, Category)
+ # spending_frame %>% dplyr::group_by(Category) %>% summarize(Total_Spending = sum(Output))
+  #str(spending_frame)
+ # as.data.frame(group_by(spending_frame, Category))
+  ##from stack:
+  #x %>%
+   # group_by(Category) %>%
+    #summarise(Frequency = sum(Frequency))
+  #aggregate(Frequency ~ Category, x, sum)
+  #agg <- group_by(spending_frame, Category)
+  #withTotals$Total_Spending <- summarize(agg, Total_Spending = sum(Output))
+  #withTotals$Rank <- rank(withTotals$Total_Spending)
 }

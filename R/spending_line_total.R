@@ -9,11 +9,15 @@ spending_line_total <- function(spending_frame, outputCurr = "USD") {
   library(ggplot2)
   library(dplyr)
   spending_frame <- convert(spending_frame, outputCurr)
-  agg <- group_by(spending_frame, Date)
-  withTotals <- summarise(agg, Total_Spending = sum(Output))
-  withTotals$Rank <- rank(withTotals$Total_Spending)
-  ggplot(withTotals, mapping = aes(x = Category, y = Total_Spending, fill = Rank^2)) +
-    geom_bar(stat = "identity") +
-    labs(x = "Category", y = "Total Spending", title = "Total Spending By Category") +
+
+  ###
+  #Best solution after lots of trial and error:
+  withTotals<- aggregate(Output ~ Date, spending_frame, sum)
+  withTotals$Rank <- rank(withTotals$Output)
+
+  #Plot:
+  ggplot(withTotals, mapping = aes(x = withTotals$Date, y = withTotals$Output)) +
+    geom_line(stat = "identity") +
+    labs(x = "Date", y = paste("Total Spending in", outputCurr), title = paste("Spending Over Time in ", outputCurr)) +
     guides(fill = FALSE)
 }

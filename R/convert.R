@@ -39,8 +39,8 @@ error_checking <- function(spending_frame, out_curr) {
 #'               with the desired output_currency and a running total
 #' @example convert("my-summer-expenses", "USD")
 #' @export
-convert <- function(spending_frame, out_curr) {
-  load("exchange_master.rda")
+convert <- function(spending_frame, out_curr = "USD") {
+  load("data/exchange_master.rda")
  # error_checking(spending_frame, out_curr)
   counter <- 0
   spending_frame[,"Output"] <- NA

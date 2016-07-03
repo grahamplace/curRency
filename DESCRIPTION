@@ -10,4 +10,3 @@ Description: R package for standardizing expenses by currency
 License: GPL-3
 LazyData: TRUE
 Suggests: testthat
-
