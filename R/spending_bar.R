@@ -18,7 +18,7 @@ spending_bar <- function(spending_frame, outputCurr = "USD") {
   #Plot:
   ggplot(withTotals, mapping = aes(x = Category, y = Output, fill = Rank^2)) +
     geom_bar(stat = "identity") +
-    labs(x = "Category", y = "Total Spending", title = "Total Spending By Category") +
+    labs(x = "Spending Category", y = paste("Total Spending in", toupper(outputCurr)), title = paste("Total Spending By Category in", toupper(outputCurr))) +
     guides(fill = FALSE)
 
 

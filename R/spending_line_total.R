@@ -18,6 +18,6 @@ spending_line_total <- function(spending_frame, outputCurr = "USD") {
   #Plot:
   ggplot(withTotals, mapping = aes(x = withTotals$Date, y = withTotals$Output)) +
     geom_line(stat = "identity") +
-    labs(x = "Date", y = paste("Total Spending in", outputCurr), title = paste("Spending Over Time in ", outputCurr)) +
+    labs(x = "Date", y = paste("Total Spending in", toupper(outputCurr)), title = paste("Spending Over Time in", toupper(outputCurr))) +
     guides(fill = FALSE)
 }

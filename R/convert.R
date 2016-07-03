@@ -52,6 +52,6 @@ convert <- function(spending_frame, out_curr = "USD") {
     final <- middle * to.desired
     spending_frame[counter, 5] <- final
   }
-  write.table(spending_frame, "New_Ouput")
+  write.table(spending_frame, paste(paste("Converted_Spending_", toupper(out_curr), sep = ""), ".csv", sep = ""))
   return(spending_frame)
 }
