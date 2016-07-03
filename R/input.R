@@ -7,6 +7,7 @@
 #' @export
 
 input <- function(csv) {
+  csv = "spending_spreadsheet.csv"
   if (class(csv) != "character") {
     stop("csv file must be input as a string!")
   }
@@ -15,7 +16,16 @@ input <- function(csv) {
   }
   library(readr)
   user_spending <- read_csv(csv)
-  spending_chart <- data.frame("Currency" = user_spending[,1], "Value" = user_spending[,2], "Category" = user_spending[,3], "Date" = user_spending[,4])
-  spending_chart$Category <- factor(spending_chart$Category)
+  names(user_spending)[1] <- 'Currency'
+  names(user_spending)[2] <- 'Value'
+  names(user_spending)[3] <- 'Category'
+  names(user_spending)[4] <- 'Date'
+ # spending_chart <- data.frame(Currency = user_spending[,1], Value = user_spending[,2], Category = user_spending[,3], Date = user_spending[,4])
+  #spending_chart$Category <- factor(spending_chart$Category)
   return(spending_chart)
 }
+
+names(user_spending)[1] <- 'Currency'
+names(user_spending)[2] <- 'Value'
+names(user_spending)[3] <- 'Category'
+names(user_spending)[4] <- 'Date'

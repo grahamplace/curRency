@@ -41,7 +41,7 @@ error_checking <- function(spending_frame, out_curr) {
 #' @export
 convert <- function(spending_frame, out_curr) {
   load("exchange_master.rda")
-  error_checking(spending_frame, out_curr)
+ # error_checking(spending_frame, out_curr)
   counter <- 0
   spending_frame[,"Output"] <- NA
   for (curr in spending_frame$Currency) {
