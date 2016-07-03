@@ -10,8 +10,6 @@ spending_line_total <- function(spending_frame, outputCurr = "USD") {
   library(dplyr)
   spending_frame <- convert(spending_frame, outputCurr)
 
-  ###
-  #Best solution after lots of trial and error:
   withTotals<- aggregate(Output ~ Date, spending_frame, sum)
   withTotals$Rank <- rank(withTotals$Output)
 
