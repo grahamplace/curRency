@@ -1,4 +1,5 @@
 #' Display bar chart broken down by spending category
+#' @author Graham Place
 #'
 #' @param spending_frame A data frame with expenses information (including currency)
 #' @param outputCurr desired output currency to display totals in

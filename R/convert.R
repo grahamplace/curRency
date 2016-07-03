@@ -31,7 +31,7 @@ error_checking <- function(spending_frame, out_curr) {
 }
 
 #' This function will convert between currencies.
-#' @author Carlos Couce
+#' @authors Carlos Couce, Graham Place
 #' @param spending_frame - data frame passed through input() by user before convert() is called
 #' @param out_curr - all the currencies in the data frame will
 #'                          be converted to this output currency

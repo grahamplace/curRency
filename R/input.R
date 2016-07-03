@@ -7,7 +7,6 @@
 #' @export
 
 input <- function(csv) {
-  csv = "spending_spreadsheet.csv"
   if (class(csv) != "character") {
     stop("csv file must be input as a string!")
   }
