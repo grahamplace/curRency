@@ -1,6 +1,6 @@
 # Small df for reference to the correct format
 library(readr)
-exchange_master <- read_csv("test.csv")
+exchange_master <- read_csv("exchange_master.csv")
 Currency <- c("USD", "CuC", "zar")
 Value <- c(13, 166, 4)
 Category <- c("Clothes", "Travel", "Food")
