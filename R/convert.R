@@ -9,7 +9,6 @@ Template <- data.frame(Currency, Value, Category, Date)
 accepted_currencies <- exchange_master[,1]
 #load("data/exchange_master.rds")
 
-
 #' This helper function is doing all the necessary error checking to ensure that the data frame can be correctly processed.
 #'
 #' authors Carlos Couce, Graham Place
