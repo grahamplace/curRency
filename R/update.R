@@ -13,6 +13,7 @@ update <- function(csv, currency, value, category, date) {
   spending_chart <- input(csv)
   update_val <- data.frame("Currency" = currency, "Value" = value, "Category" = category, "Date" = date)
   spending_chart <- rbind(spending_chart, update_val)
+  print(storeName)
   write.csv(spending_chart, "updated_spending_chart.csv")
   return(spending_chart)
 }

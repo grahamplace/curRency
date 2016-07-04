@@ -3,6 +3,7 @@
 export(convert)
 export(input)
 export(spending_bar)
+export(spending_by_country)
 export(spending_by_day)
 export(spending_line_total)
 export(update)
