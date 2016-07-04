@@ -22,8 +22,3 @@ input <- function(csv) {
   user_spending$Category <- factor(user_spending$Category)
   return(user_spending)
 }
-
-names(user_spending)[1] <- 'Currency'
-names(user_spending)[2] <- 'Value'
-names(user_spending)[3] <- 'Category'
-names(user_spending)[4] <- 'Date'

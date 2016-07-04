@@ -1,10 +1,13 @@
 # Small df for reference to the correct format
+library(readr)
+exchange_master <- read_csv("test.csv")
 Currency <- c("USD", "CuC", "zar")
 Value <- c(13, 166, 4)
 Category <- c("Clothes", "Travel", "Food")
 Date <- as.Date(c("2016-08-25", "2016-10-25", "2016-01-05"))
 Template <- data.frame(Currency, Value, Category, Date)
 accepted_currencies <- exchange_master[,1]
+#load("data/exchange_master.rds")
 
 
 #' This helper function is doing all the necessary error checking to ensure that the data frame can be correctly processed.
@@ -45,7 +48,9 @@ error_checking <- function(spending_frame, out_curr) {
 #'               with the desired output_currency and a running total
 #' @export
 convert <- function(spending_frame, out_curr = "USD") {
-  load("data/exchange_master.rda")
+  library(readr)
+  exchange_master <- read_csv("exchange_master.csv")
+  #load("data/exchange_master.rda")
  # error_checking(spending_frame, out_curr)
   counter <- 0
   spending_frame[,"Output"] <- NA
