@@ -1,12 +1,12 @@
 # Small df for reference to the correct format
 library(readr)
-rda <- read_csv("exchange_master.csv")
+master_exchange <- read_csv("exchange_master.csv")
 Currency <- c("USD", "CuC", "zar")
 Value <- c(13, 166, 4)
 Category <- c("Clothes", "Travel", "Food")
 Date <- as.Date(c("2016-08-25", "2016-10-25", "2016-01-05"))
 Template <- data.frame(Currency, Value, Category, Date)
-accepted_currencies <- rda[,1]
+accepted_currencies <- master_exchange[,1]
 
 #' This helper function is doing all the necessary error checking to ensure that the data frame can be correctly processed.
 #'
@@ -31,7 +31,7 @@ error_checking <- function(spending_frame, out_curr) {
   #  stop("Second argument is not a currency!")
   #}
   #for (currency in spending_frame$Currency) {
-   # if (!is.element(toupper(currency), rda$Code)) {
+   # if (!is.element(toupper(currency), master_exchange$Code)) {
     #  cat(sprintf("%s is not in our database. Check the spelling.\n", currency))
     #}
  # }
@@ -47,15 +47,15 @@ error_checking <- function(spending_frame, out_curr) {
 #' @export
 convert <- function(spending_frame, out_curr = "USD") {
   library(readr)
-  rda <- read_csv("exchange_master.csv")
+  master_exchange <- read_csv("exchange_master.csv")
  # error_checking(spending_frame, out_curr)
   counter <- 0
   spending_frame[,"Output"] <- NA
   for (curr in spending_frame$Currency) {
     counter <- counter + 1
-    to.US <- rda[match(toupper(curr), rda$Code), 2]
+    to.US <- master_exchange[match(toupper(curr), master_exchange$Code), 2]
     middle <- to.US * spending_frame[counter, 2]
-    to.desired <- rda[match(toupper(out_curr), rda$Code), 3]
+    to.desired <- master_exchange[match(toupper(out_curr), master_exchange$Code), 3]
     final <- middle * to.desired
     spending_frame[counter, 5] <- final
   }
