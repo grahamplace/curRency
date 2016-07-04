@@ -47,7 +47,11 @@ error_checking <- function(spending_frame, out_curr) {
 #' @export
 convert <- function(spending_frame, out_curr = "USD") {
   library(readr)
-  master_exchange <- read_csv("exchange_master.csv")
+
+  load("data/exchange_master.rda")
+  master_exchange <- exchange_master
+
+#  master_exchange <- read_csv("exchange_master.csv")
  # error_checking(spending_frame, out_curr)
   counter <- 0
   spending_frame[,"Output"] <- NA
