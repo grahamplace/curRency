@@ -1,10 +1,8 @@
 #' Display bar chart broken down by day of the week
-#' @author Graham Place
+#' author Graham Place
 #'
 #' @param spending_frame A data frame with expenses information (including currency)
 #' @param outputCurr desired output currency to display totals in
-#' @example
-#' spending_by_day(my_spending, "ZAR")
 #' @export
 spending_by_day <- function(spending_frame, outputCurr = "USD") {
   library(ggplot2)

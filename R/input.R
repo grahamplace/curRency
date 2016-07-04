@@ -1,9 +1,8 @@
 #' Read in spender's spreadsheet and convert to usable data frame
+#' authors Claire Adair, Graham Place
 #'
 #' @param csv A csv file with expenses information (including currency).
 #' @return A data frame with cleaned up and properly identified information.
-#' @example
-#' input("spending_spreadsheet.csv")
 #' @export
 
 input <- function(csv) {

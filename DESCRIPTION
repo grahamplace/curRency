@@ -3,10 +3,12 @@ Type: Package
 Title: Spending tracking and currency conversion tools
 Version: 0.1.0
 Author: Graham Place <grahamgplace@gmail.com>,
-        Carlos Couce <carlos.couce25@gmail.com>,
-        Claire Adair <cadair@princeton.edu>
+    Carlos Couce <carlos.couce25@gmail.com>,
+    Claire Adair <cadair@princeton.edu>
 Description: R package for standardizing expenses by currency
-             and visualizing user's spending history.
+    and visualizing user's spending history.
 License: GPL-3
 LazyData: TRUE
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.1

@@ -7,8 +7,14 @@ Template <- data.frame(Currency, Value, Category, Date)
 accepted_currencies <- exchange_master[,1]
 
 
-# This helper function is doing all the necessary error checking to
-# ensure that the data frame can be correctly processed.
+#' This helper function is doing all the necessary error checking to ensure that the data frame can be correctly processed.
+#'
+#' authors Carlos Couce, Graham Place
+#' @param spending_frame - data frame passed through input() by user before convert() is called
+#' @param out_curr - all the currencies in the data frame will
+#'                          be converted to this output currency
+#' @return spending_frame - generate a column at the far right of the data frame
+#'               with the desired output_currency and a running total
 error_checking <- function(spending_frame, out_curr) {
   if (class(spending_frame) != "data.frame") {
     stop("Input a data frame that was passed through input()!")
@@ -31,13 +37,12 @@ error_checking <- function(spending_frame, out_curr) {
 }
 
 #' This function will convert between currencies.
-#' @authors Carlos Couce, Graham Place
+#' authors Carlos Couce, Graham Place
 #' @param spending_frame - data frame passed through input() by user before convert() is called
 #' @param out_curr - all the currencies in the data frame will
 #'                          be converted to this output currency
 #' @return spending_frame - generate a column at the far right of the data frame
 #'               with the desired output_currency and a running total
-#' @example convert("my-summer-expenses", "USD")
 #' @export
 convert <- function(spending_frame, out_curr = "USD") {
   load("data/exchange_master.rda")
